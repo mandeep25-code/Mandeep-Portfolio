@@ -1,4 +1,4 @@
-import { ArrowDown, MapPin } from 'lucide-react';
+import { ArrowDown, Download, MapPin } from 'lucide-react';
 import { personalInfo } from '@/data/portfolio';
 
 export default function Hero() {
@@ -70,6 +70,10 @@ export default function Hero() {
           <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="btn-secondary">
             Contact Me
           </button>
+          <a href="/Mandeep_Dhiman_Resume_Updated.pdf" download className="btn-secondary">
+            <Download size={18} />
+            Resume
+          </a>
         </div>
 
         <div

@@ -78,7 +78,7 @@ export const skillCategories: SkillCategory[] = [
 export type Project = {
   id: string;
   name: string;
-  category: 'Full Stack' | 'Frontend';
+  category: 'Full Stack' | 'Frontend' | 'AI';
   live: string;
   github: string;
   timeline: string;
@@ -87,9 +87,38 @@ export type Project = {
   techUsed: string[];
   features: string[];
   description: string[];
+  featured?: boolean;
 };
 
 export const projects: Project[] = [
+  {
+    id: '07',
+    name: 'Pulse UI - Modern SaaS Dashboard',
+    category: 'Frontend',
+    live: '',
+    github: 'https://github.com/mandeep25-code',
+    timeline: '2026',
+    status: 'Completed',
+    featured: true,
+    shortDescription: 'A responsive analytics dashboard designed for fast decisions, with an accessible interface, data-rich views, and purposeful micro-interactions.',
+    techUsed: ['React.js', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    features: ['Responsive dashboard layout', 'Reusable UI component system', 'Accessible dark and light themes', 'Interactive data visualisation states'],
+    description: ['Designed a polished frontend experience that makes complex product data easy to scan.', 'Built the interface with reusable React components and responsive layouts for every screen size.'],
+  },
+  {
+    id: '06',
+    name: 'Nexus AI Chat App',
+    category: 'AI',
+    live: '',
+    github: 'https://github.com/mandeep25-code',
+    timeline: '2026',
+    status: 'Completed',
+    featured: true,
+    shortDescription: 'An AI chat workspace with conversation history, prompt suggestions, markdown-ready replies, and a focused interface for everyday problem solving.',
+    techUsed: ['React.js', 'TypeScript', 'AI API', 'Tailwind CSS'],
+    features: ['Persistent conversation history', 'Suggested prompts and quick actions', 'Streaming-style response experience', 'Responsive, dark-mode-first interface'],
+    description: ['Created an intuitive chat workspace that makes interacting with an AI assistant feel fast and natural.', 'Focused on the product details that matter: clear states, helpful prompts, message history, and a distraction-free responsive UI.'],
+  },
   {
     id: '05',
     name: 'AI-Powered Software Project Management & Client Portal',

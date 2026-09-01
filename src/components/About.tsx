@@ -1,114 +1,71 @@
-import { Sparkles } from 'lucide-react';
-import { personalInfo, experiences, educations, certifications, experienceIcon, educationIcon, certificationIcon } from '@/data/portfolio';
+import { ArrowUpRight, BrainCircuit, Code2, Rocket, Sparkles } from 'lucide-react';
+import { personalInfo } from '@/data/portfolio';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+
+const signals = [
+  { label: 'Focus', value: 'AI + full stack', icon: BrainCircuit },
+  { label: 'Approach', value: 'Build, test, refine', icon: Code2 },
+  { label: 'Direction', value: 'Software engineer', icon: Rocket },
+];
 
 export default function About() {
   const { ref, visible } = useScrollReveal<HTMLDivElement>();
-  const ExperienceIcon = experienceIcon;
-  const EducationIcon = educationIcon;
-  const CertificationIcon = certificationIcon;
 
   return (
     <section id="about" className="relative w-11/12 max-w-6xl mx-auto py-20 md:py-28">
       <div ref={ref} className={`reveal ${visible ? 'visible' : ''}`}>
-        <div className="text-center mb-16">
-          <h2 className="section-title">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <p className="section-subtitle">Get to know me better</p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <div className="card p-6 md:p-8 card-hover">
-            <h3 className="text-xl font-bold text-heading mb-4 flex items-center gap-2">
-              <Sparkles size={20} className="text-accent" />
-              Who I Am
-            </h3>
-            <div className="space-y-4 text-text-secondary text-sm md:text-base leading-relaxed">
-              {personalInfo.bio.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-            <div className="mt-6 p-4 rounded-xl bg-accent-soft border border-border">
-              <p className="text-accent text-sm md:text-base font-medium italic">
-                {personalInfo.passion}
+        <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-7 items-stretch">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-600 to-cyan-500 p-7 md:p-10 text-white shadow-accent">
+            <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full border border-white/20" />
+            <div className="absolute -bottom-24 -left-24 h-56 w-56 rounded-full bg-cyan-300/25 blur-2xl" />
+            <div className="relative">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-bold tracking-wider uppercase">
+                <Sparkles size={14} /> More than a developer
+              </div>
+              <p className="mt-8 font-mono text-xs uppercase tracking-[0.25em] text-cyan-100">WHO I AM / 01</p>
+              <h2 className="mt-3 max-w-xl text-3xl font-black leading-tight md:text-5xl">
+                I turn ambitious ideas into useful digital products.
+              </h2>
+              <p className="mt-6 max-w-lg text-base leading-relaxed text-blue-50 md:text-lg">
+                I am Mandeep, a computer science student who enjoys the full journey - from a rough problem to a polished, working experience.
               </p>
+              <button
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-blue-700 transition-transform hover:scale-105"
+              >
+                Explore my work <ArrowUpRight size={18} />
+              </button>
             </div>
           </div>
 
-          <div className="card p-6 md:p-8 card-hover">
-            <h3 className="text-xl font-bold text-heading mb-4 flex items-center gap-2">
-              <ExperienceIcon size={20} className="text-accent" />
-              Experience
-            </h3>
-            <div className="space-y-4">
-              {experiences.map((exp, i) => (
-                <div key={i} className="border-l-2 border-border hover:border-accent transition-colors pl-4 py-1">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                    <span className="font-semibold text-text-primary">{exp.role}</span>
-                    <span className="text-xs px-3 py-1 rounded-full bg-accent-soft text-accent font-medium">
-                      {exp.period}
-                    </span>
+          <div className="card p-7 md:p-10 flex flex-col justify-between">
+            <div>
+              <p className="font-mono text-xs font-semibold tracking-[0.22em] text-accent uppercase">My developer DNA</p>
+              <p className="mt-5 text-lg leading-relaxed text-text-secondary">{personalInfo.bio[0]}</p>
+              <p className="mt-4 text-sm leading-relaxed text-text-muted">{personalInfo.bio[1]}</p>
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              {signals.map((signal) => {
+                const Icon = signal.icon;
+                return (
+                  <div key={signal.label} className="rounded-2xl border border-border bg-bg-secondary p-4">
+                    <Icon size={19} className="text-accent" />
+                    <p className="mt-3 text-xs text-text-muted">{signal.label}</p>
+                    <p className="mt-1 text-sm font-bold text-heading">{signal.value}</p>
                   </div>
-                  <p className="text-accent text-sm font-medium mb-2">{exp.company}</p>
-                  <ul className="space-y-1.5">
-                    {exp.points.map((point, j) => (
-                      <li key={j} className="text-text-secondary text-sm flex gap-2">
-                        <span className="text-accent mt-1 shrink-0">▹</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="card p-6 md:p-8 card-hover">
-            <h3 className="text-xl font-bold text-heading mb-4 flex items-center gap-2">
-              <EducationIcon size={20} className="text-accent" />
-              Education
-            </h3>
-            <div className="space-y-4">
-              {educations.map((edu, i) => (
-                <div key={i} className="border-l-2 border-border hover:border-accent transition-colors pl-4 py-1">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                    <span className="font-semibold text-text-primary text-sm">{edu.degree}</span>
-                    <span className="text-xs px-3 py-1 rounded-full bg-bg-secondary text-text-secondary font-medium">
-                      {edu.period}
-                    </span>
-                  </div>
-                  <p className="text-text-secondary text-sm">{edu.institution}</p>
-                  <p className="text-accent text-sm font-medium mt-1">{edu.detail}</p>
-                </div>
-              ))}
+        <div className="mt-7 grid gap-4 md:grid-cols-3">
+          {['I care about the small details that make a product feel effortless.', 'I use AI deliberately - as a tool for better experiences, not just a buzzword.', 'I am always learning, shipping, and looking for the next hard problem.'].map((note, index) => (
+            <div key={note} className="card card-hover p-5 flex gap-4">
+              <span className="font-mono text-sm font-bold text-accent">0{index + 1}</span>
+              <p className="text-sm leading-relaxed text-text-secondary">{note}</p>
             </div>
-          </div>
-
-          <div className="card p-6 md:p-8 card-hover">
-            <h3 className="text-xl font-bold text-heading mb-4 flex items-center gap-2">
-              <CertificationIcon size={20} className="text-accent" />
-              Certifications & Workshops
-            </h3>
-            <div className="space-y-3">
-              {certifications.map((cert, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-bg-secondary border border-border hover:border-accent transition-all duration-300"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-accent-soft flex items-center justify-center shrink-0">
-                    <CertificationIcon size={18} className="text-accent" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-text-primary text-sm">{cert.name}</p>
-                    <p className="text-text-muted text-xs">{cert.source}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

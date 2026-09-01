@@ -3,7 +3,7 @@ import { ExternalLink, Github, Calendar, CheckCircle2, Clock, X } from 'lucide-r
 import { projects, type Project } from '@/data/portfolio';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
-const filters = ['All', 'Full Stack', 'Frontend'] as const;
+const filters = ['All', 'Featured', 'Full Stack', 'Frontend', 'AI'] as const;
 type FilterType = (typeof filters)[number];
 
 export default function Projects() {
@@ -13,6 +13,7 @@ export default function Projects() {
 
   const filteredProjects = useMemo(() => {
     if (filter === 'All') return projects;
+    if (filter === 'Featured') return projects.filter((project) => project.featured);
     return projects.filter((p) => p.category === filter);
   }, [filter]);
 
